@@ -74,6 +74,17 @@ app.get('/produtos', (req, res) => {
     })
 });
 
+app.get('/fabricantes', (req, res) => {
+  Fabricante.findAll({
+    attributes: [ 'nome' ]
+  })
+    .then((fabricantes) => {
+      res.json(fabricantes);
+    }).catch((err) => {
+      res.json(err);
+    })
+});
+
 app.post('/fabricantes', (req, res) => {
   if (req.body.hasOwnProperty('nome')) {
     const { nome } = req.body;
